@@ -630,24 +630,24 @@
           <i class="fas fa-search"></i>
           <input type="text" placeholder="Search" id="search-input" />
         </div>
-        <div id="profile-container">
-          <img class="profile-img" src="profile1.png" alt="Profile" />
-          <div id="profile-text">
-            <p id="dashboardName">Cyrus</p>
-            <p id="dashboardYear">3rd Year</p>
-          </div>
-          <i class="fas fa-bell" id="notification-icon"></i>
-        </div>
-      </div>
-
-      <section id="welcome-section">
-        <div id="welcome-text">
-          <p id="currentDate">April 27, 2024</p>
-          <h2>Welcome back, <span id="userName">Cyrus</span>!</h2>
-          <p>Always stay updated in your student portal</p>
-        </div>
+      <div id="profile-container">
         <img class="profile-img" src="profile1.png" alt="Profile" />
-      </section>
+        <div id="profile-text">
+          <p id="dashboardName">Cyrus</p>
+          <p id="dashboardYear">3rd Year</p>
+        </div>
+        <i class="fas fa-bell" id="notification-icon"></i>
+      </div>
+    </div>
+
+    <section id="welcome-section">
+      <div id="welcome-text">
+        <p id="currentDate"></p>
+        <h2>Welcome back, <span id="userName"></span>!</h2>
+        <p>Always stay updated in your student portal</p>
+      </div>
+      <img class="profile-img" src="profile1.png" alt="Profile" />
+    </section>
 
       <section id="stats-section">
         <div class="stat-card">
@@ -767,7 +767,19 @@
       localStorage.removeItem('studentName');
       window.location.href = 'index.html';
     });
+
+    // Set current date and user name dynamically
+    function formatDate(date) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleDateString(undefined, options);
+    }
+
+    document.getElementById('currentDate').textContent = formatDate(new Date());
+
+    // Get userName from localStorage or default to 'Student'
+    const storedName = localStorage.getItem('studentName') || 'Student';
+    document.getElementById('userName').textContent = storedName;
+    document.getElementById('dashboardName').textContent = storedName;
   </script>
 </body>
-
 </html>
