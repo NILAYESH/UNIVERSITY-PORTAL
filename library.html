@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Library - Cyrotical University</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: linear-gradient(-45deg, #0c134f, #1d267d, #5c469c, #d4adfc);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: white;
+    }
+
+    header {
+      position: sticky;
+      left: 0;
+      top: 0;
+    }
+
+    header.scrolled {
+      background: #1d267d;
+      border-bottom: 1px solid #5c469c;
+      transition: background 0.9s ease, border-bottom 0.9s ease;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .glow-container {
+      box-shadow:
+        0 0 10px #5c469c,
+        0 0 20px #d4adfc,
+        0 0 30px #1d267d,
+        0 0 40px #d4adfc;
+    }
+
+    .header-link:hover {
+      color: #d4adfc;
+      text-shadow:
+        0 0 5px #d4adfc,
+        0 0 10px #d4adfc;
+    }
+
+    /* Sidebar animation */
+    aside.menu {
+      width: 64px;
+      transition: width 0.3s ease;
+      overflow: hidden;
+    }
+
+    aside.menu:hover {
+      width: 260px;
+    }
+
+    aside.menu nav a span {
+      display: none;
+      transition: display 0.3s ease;
+    }
+
+    aside.menu:hover nav a span {
+      display: inline;
+    }
+  </style>
+</head>
+
+<body class="bg-[#0c134f] text-white min-h-screen flex flex-col">
+  <header
+    class="w-full py-6 flex flex-col sm:flex-row items-center justify-between px-4 border-b border-[#5c469c]">
+    <h1 class="text-3xl sm:text-4xl font-extrabold glow-text select-none mb-4 sm:mb-0">CYROTICAL UNIVERSITY</h1>
+    <nav class="flex space-x-6 text-sm font-semibold text-[#8b949e]">
+      <a class="header-link transition duration-200" href="Home.html">Home</a>
+      <a class="header-link transition duration-200" href="box_about.html">About</a>
+      <a class="header-link transition duration-200" href="box_about.html">Admissions</a>
+      <a class="header-link transition duration-200" href="box_about.html">Academics</a>
+      <a class="header-link transition duration-200" href="box_about.html">Contact</a>
+      <a class="header-link transition duration-200" href="box_about.html">More</a>
+    </nav>
+  </header>
+
+  <div class="min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#1d267d] text-white p-6 rounded-tr-2xl rounded-br-2xl flex flex-col menu">
+      <div class="flex items-center justify-center mb-8">
+        <div class="bg-[#1d267d] p-4 rounded-lg">
+          <i class="fas fa-graduation-cap fa-2x"></i>
+        </div>
+      </div>
+      <nav class="flex-1 space-y-4">
+        <a href="dashboard_updated.html"
+          class="flex items-center space-x-3 text-lg font-semibold hover:text-[#d4adfc]">
+          <i class="fas fa-home"></i><span>Dashboard</span>
+        </a>
+        <a href="payment_info_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100 hover:text-[#d4adfc]">
+          <i class="fas fa-credit-card"></i><span>Payment Info</span>
+        </a>
+        <a href="registration_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100 hover:text-[#d4adfc]">
+          <i class="fas fa-user-plus"></i><span>Registration</span>
+        </a>
+        <a href="courses_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100 hover:text-[#d4adfc]">
+          <i class="fas fa-book-open"></i><span>Courses</span>
+        </a>
+        <a href="drop_semester_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100 hover:text-[#d4adfc]">
+          <i class="fas fa-times-circle"></i><span>Drop Semester</span>
+        </a>
+        <a href="result_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100 hover:text-[#d4adfc]">
+          <i class="fas fa-chart-bar"></i><span>Result</span>
+        </a>
+        <a href="notice_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100 hover:text-[#d4adfc]">
+          <i class="fas fa-bell"></i><span>Notice</span>
+        </a>
+        <a href="schedule_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100 hover:text-[#d4adfc]">
+          <i class="fas fa-calendar-alt"></i><span>Schedule</span>
+        </a>
+        <a href="library.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100 hover:text-[#d4adfc]">
+          <i class="fas fa-book"></i><span>Library</span>
+        </a>
+      </nav>
+      <button id="logoutBtn" class="mt-8 flex items-center space-x-3 opacity-75 hover:opacity-100 self-start">
+        <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+      </button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+      <h2 class="text-3xl font-bold mb-6">Library</h2>
+      <p>Welcome to the Cyrotical University Library. Here you can find resources, books, and study materials.</p>
+      <div class="mt-6 overflow-x-auto">
+        <table class="min-w-full bg-white text-black rounded-lg shadow">
+          <thead>
+            <tr>
+              <th class="py-3 px-6 border-b border-gray-300 text-left">Book ID</th>
+              <th class="py-3 px-6 border-b border-gray-300 text-left">Book Name</th>
+              <th class="py-3 px-6 border-b border-gray-300 text-left">PDF Link</th>
+              <th class="py-3 px-6 border-b border-gray-300 text-left">Volume/Edition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Example rows -->
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B001</td>
+              <td class="py-2 px-6 border-b border-gray-300">Introduction to Computer Science</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="https://computingbook.org/FullText.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">1st Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B002</td>
+              <td class="py-2 px-6 border-b border-gray-300">Advanced Mathematics</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="https://www.bayes.citystgeorges.ac.uk/__data/assets/pdf_file/0008/101213/Advanced-Maths.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">3rd Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B003</td>
+              <td class="py-2 px-6 border-b border-gray-300">Modern Physics</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="https://web.pdx.edu/~pmoeck/books/Tipler_Llewellyn.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">2nd Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B004</td>
+              <td class="py-2 px-6 border-b border-gray-300">Literature and Composition</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="https://apsubjects.weebly.com/uploads/2/0/5/3/20538716/ap_english_literature___composition.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">4th Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B005</td>
+              <td class="py-2 px-6 border-b border-gray-300">World History</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="https://open.umn.edu/opentextbooks/textbooks/1456" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">5th Edition</td>
+            </tr>
+            <!-- Additional rows can be added here -->
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B006</td>
+              <td class="py-2 px-6 border-b border-gray-300">SQL</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book6.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">1st Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B007</td>
+              <td class="py-2 px-6 border-b border-gray-300">DBMS</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book7.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">2nd Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B008</td>
+              <td class="py-2 px-6 border-b border-gray-300">DIGITAL LOGIC</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book8.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">3rd Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B009</td>
+              <td class="py-2 px-6 border-b border-gray-300">EVS</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book9.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">1st Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B010</td>
+              <td class="py-2 px-6 border-b border-gray-300">AGRICULTURE</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book10.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">2nd Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B011</td>
+              <td class="py-2 px-6 border-b border-gray-300">AI&ML</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book11.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">3rd Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B012</td>
+              <td class="py-2 px-6 border-b border-gray-300">HTML</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book12.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">1st Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B013</td>
+              <td class="py-2 px-6 border-b border-gray-300">CSS</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book13.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">2nd Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B014</td>
+              <td class="py-2 px-6 border-b border-gray-300">MONGO DB</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book14.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">3rd Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B015</td>
+              <td class="py-2 px-6 border-b border-gray-300">PHP </td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book15.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">1st Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B016</td>
+              <td class="py-2 px-6 border-b border-gray-300">ARCHTICTURE</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book16.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">2nd Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B017</td>
+              <td class="py-2 px-6 border-b border-gray-300">NETWORKING</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book17.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">3rd Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B018</td>
+              <td class="py-2 px-6 border-b border-gray-300">GEOGRAPHY</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book18.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">1st Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B019</td>
+              <td class="py-2 px-6 border-b border-gray-300">HUMAN ETHICS</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book19.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">2nd Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B020</td>
+              <td class="py-2 px-6 border-b border-gray-300">WORK LIFE BALANCE</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="pdfs/book20.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">3rd Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B021</td>
+              <td class="py-2 px-6 border-b border-gray-300">ALGORITHMS</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="https://jeffe.cs.illinois.edu/teaching/algorithms/book/Algorithms-JeffE.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">1st Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B022</td>
+              <td class="py-2 px-6 border-b border-gray-300">REASONING</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="https://ggnindia.dronacharya.info/Study-Materials/Download/Verbal-Non-verbal-reasoning-Book.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">2nd Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B023</td>
+              <td class="py-2 px-6 border-b border-gray-300">MASTER IN DSA</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="https://www.mta.ca/~rrosebru/oldcourse/263114/Dsa.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">3rd Edition</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-6 border-b border-gray-300">B024</td>
+              <td class="py-2 px-6 border-b border-gray-300">HISTORY OF C</td>
+              <td class="py-2 px-6 border-b border-gray-300"><a href="https://www.idc-online.com/technical_references/pdfs/information_technology/History_of_C_Programming_language.pdf" class="text-blue-600 hover:underline" target="_blank">View PDF</a></td>
+              <td class="py-2 px-6 border-b border-gray-300">1st Edition</td>
+            </tr>
+            <tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <footer class="bg-[#0c134f] border-t border-[#5c469c] mt-12 py-8 w-full px-6 text-[#d4adfc] text-sm">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      <div>
+        <h3 class="text-[#d4adfc] font-semibold mb-3">Contact Us</h3>
+        <p>College Address: 123 College St, City, State, ZIP</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Email: info@yourcollege.edu</p>
+      </div>
+      <div>
+        <h3 class="text-[#d4adfc] font-semibold mb-3">Quick Links</h3>
+        <ul class="space-y-1">
+          <li><a class="hover:underline" href="#">Terms and Conditions</a></li>
+          <li><a class="hover:underline" href="#">Privacy Policy</a></li>
+          <li><a class="hover:underline" href="#">Academic Calendar</a></li>
+          <li><a class="hover:underline" href="#">Student Handbook</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-[#d4adfc] font-semibold mb-3">Follow Us</h3>
+        <ul class="flex space-x-4">
+          <li><a aria-label="Facebook" class="hover:text-[#d4adfc]" href="#"><i class="fab fa-facebook fa-lg"></i></a>
+          </li>
+          <li><a aria-label="Twitter" class="hover:text-[#d4adfc]" href="#"><i class="fab fa-twitter fa-lg"></i></a>
+          </li>
+          <li><a aria-label="Instagram" class="hover:text-[#d4adfc]" href="#"><i class="fab fa-instagram fa-lg"></i></a>
+          </li>
+          <li><a aria-label="LinkedIn" class="hover:text-[#d4adfc]" href="#"><i class="fab fa-linkedin fa-lg"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <p class="text-center text-xs text-[#5c469c] mt-8">&copy; 2024 Your College Name. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>

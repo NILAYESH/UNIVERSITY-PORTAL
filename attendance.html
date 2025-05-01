@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Attendance - Cyrotical University</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color1: #0c134f;
+      --color2: #1d267d;
+      --color3: #5c469c;
+      --color4: #d4adfc;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: linear-gradient(-45deg, var(--color1), var(--color2), var(--color3));
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      width: 100%;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 100%;
+      margin: 0 auto;
+      border-bottom: 1px solid transparent;
+      position: sticky;
+      top: 0;
+      background: transparent;
+      z-index: 50;
+      transition: background 0.9s ease, border-bottom 0.9s ease;
+    }
+
+    header.scrolled {
+      background: var(--color1);
+      border-bottom: 1px solid #30363d;
+    }
+
+    header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      user-select: none;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #8b949e;
+      justify-content: right;
+      align-items: right;
+      padding: 0 2rem;
+    }
+
+    nav a {
+      transition: color 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    nav a:hover {
+      color: var(--color4);
+      text-shadow:
+        0 0 5px var(--color4),
+        0 0 10px var(--color4);
+    }
+
+    #container {
+      display: flex;
+      min-height: calc(100vh - 4.5rem);
+      flex: 1;
+    }
+
+    #sidebar {
+      width: 16rem;
+      background-color: #5a2a8a;
+      color: white;
+      padding: 1.5rem;
+      border-top-right-radius: 1.5rem;
+      border-bottom-right-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #sidebar-icon {
+      background-color: #5a2a8a;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    #sidebar-icon i {
+      font-size: 2rem;
+    }
+
+    #sidebar-nav {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .sidebar-link:hover,
+    .sidebar-link.active {
+      color: #cbb3ff;
+    }
+
+    #sidebar button.sidebar-logout {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.75);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      align-self: flex-start;
+    }
+
+    #sidebar button.sidebar-logout:hover {
+      color: #cbb3ff;
+    }
+
+    #main-content {
+      flex: 1;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      color: #1a1a1a;
+      /* background-color: #1a1a1a45; */
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #fbf9ff;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #210083;
+      
+    }
+
+    th,
+    td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      /* background-color: #7f5af0; */
+      /* color: white; */
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background-color: #f3e8ff;
+    }
+
+    button.view-details {
+      background-color: #7f5af0;
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+    }
+
+    button.view-details:hover {
+      background-color: #5a1e9e;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>CYROTICAL UNIVERSITY</h1>
+    <nav>
+      <a class="header-link" href="Home.html">Home</a>
+      <a class="header-link" href="box_about.html">About</a>
+      <a class="header-link" href="box_about.html">Admissions</a>
+      <a class="header-link" href="box_about.html">Academics</a>
+      <a class="header-link" href="box_about.html">Contact</a>
+      <a class="header-link" href="box_about.html">More</a>
+    </nav>
+  </header>
+
+  <div id="container">
+    <aside id="sidebar">
+      <div id="sidebar-icon">
+        <i class="fas fa-graduation-cap fa-2x"></i>
+      </div>
+      <nav id="sidebar-nav">
+        <a href="dashboard_updated.html" class="sidebar-link"><i class="fas fa-home"></i><span>Dashboard</span></a>
+        <a href="payment_info_updated.html" class="sidebar-link"><i class="fas fa-credit-card"></i><span>Payment
+            Info</span></a>
+        <a href="registration_updated.html" class="sidebar-link"><i
+            class="fas fa-user-plus"></i><span>Registration</span></a>
+        <a href="courses_updated.html" class="sidebar-link"><i class="fas fa-book-open"></i><span>Courses</span></a>
+        <a href="drop_semester_updated.html" class="sidebar-link"><i class="fas fa-times-circle"></i><span>Drop
+            Semester</span></a>
+        <a href="result_updated.html" class="sidebar-link"><i class="fas fa-chart-bar"></i><span>Result</span></a>
+        <a href="notice_updated.html" class="sidebar-link"><i class="fas fa-bell"></i><span>Notice</span></a>
+        <a href="schedule_updated.html" class="sidebar-link"><i
+            class="fas fa-calendar-alt"></i><span>Schedule</span></a>
+        <a href="attendance.html" class="sidebar-link active"><i
+            class="fas fa-check-circle"></i><span>Attendance</span></a>
+            <a href="canteen.html" class="sidebar-link active"><i class="fas fa-utensils"></i><span>Canteen</span></a>
+      </nav>
+      <button id="logoutBtn" class="sidebar-logout">
+        <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+      </button>
+    </aside>
+
+    <main id="main-content">
+      <h2>Attendance Summary</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Total Classes</th>
+            <th>Attended</th>
+            <th>Attendance %</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Object Oriented Programming</b></td>
+            <td><b>20</b></td>
+            <td><b>18</b></td>
+            <td><b>90%</b></td>
+            <td><button class="view-details" onclick="viewDetails('oop')">View</button></td>
+          </tr>
+          <tr>
+            <td><b>Fundamentals of Database Systems</b></td>
+            <td><b>22</b></td>
+            <td><b>20</b></td>
+            <td><b>91%</b></td>
+            <td><button class="view-details" onclick="viewDetails('db')">View</button></td>
+          </tr>
+          <tr>
+            <td><b>Data Structures</td>
+            <td><b>18</b></td>
+            <td><b>16</b></td>
+            <td><b>89%</b></td>
+            <td><button class="view-details" onclick="viewDetails('ds')">View</button></td>
+          </tr>
+          <tr>
+            <td><b>Operating Systems</b></td>
+            <td><b>20</b></td>
+            <td><b>19</b></td>
+            <td><b>95%</b></td>
+            <td><button class="view-details" onclick="viewDetails('os')">View</button></td>
+          </tr>
+          <tr>
+            <td><b>Computer Networks</b></td>
+            <td><b>21</b></td>
+            <td><b>20</b></td>
+            <td><b>95%</b></td>
+            <td><button class="view-details" onclick="viewDetails('cn')">View</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <script>
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 8) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    function viewDetails(subject) {
+      // Redirect to detailed_attendance.html with subject query parameter
+      window.location.href = 'detailed_attendance.html?subject=' + subject;
+    }
+  </script>
+</body>
+
+</html>

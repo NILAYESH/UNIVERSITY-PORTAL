@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Hosteller</title>
+
+<style>body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.hero {
+    display: flex;
+    padding: 50px;
+    background-color: #e9ecef;
+}
+
+.hero-text {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.hero-text h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-form input,
+.search-form button {
+    margin: 5px 0;
+    padding: 10px;
+}
+
+.guest {
+    display: flex;
+    align-items: center;
+}
+
+.hero-image {
+    flex: 1;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+}</style>    
+</head>
+<body>
+    <header>
+        <div class="logo">Hosteller</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Rooms</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Pages</a></li>
+                <li><a href="#">Contacts</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Hosteller — amazing hostel for the free spirited traveler</h1>
+                <p>Egestas pretium aenean pharetra magna ac. Et tortor consequat id porta nibh venenatis cras sed. Vel turpis nunc eget lorem dolor sed.</p>
+                <div class="search-form">
+                    <input type="date" placeholder="Check-in">
+                    <input type="date" placeholder="Check-out">
+                    <div class="guests">
+                        <label>Adults: </label>
+                        <button>-</button><span>1</span><button>+</button>
+                        <label>Children: </label>
+                        <button>-</button><span>0</span><button>+</button>
+                    </div>
+                    <button class="search-button">Search</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="image.jpg" alt="Hostel Room">
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Hosteller. All rights reserved.</p>
+    </footer>
+</body>
+</html>
