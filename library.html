@@ -148,6 +148,8 @@
       <h2 class="text-3xl font-bold mb-6">Library</h2>
       <p>Welcome to the Cyrotical University Library. Here you can find resources, books, and study materials.</p>
       <div class="mt-6 overflow-x-auto">
+        <input type="text" id="searchInput" placeholder="Search books..." class="mb-4 p-2 rounded border border-gray-300 text-black w-full" />
+        <p id="noResultsMessage" style="display:none; color: red; font-weight: bold;">No book found</p>
         <table class="min-w-full bg-white text-black rounded-lg shadow">
           <thead>
             <tr>
@@ -305,45 +307,35 @@
               <td class="py-2 px-6 border-b border-gray-300">1st Edition</td>
             </tr>
             <tr>
-          </tbody>
+</tbody>
         </table>
       </div>
     </main>
   </div>
 
-  <footer class="bg-[#0c134f] border-t border-[#5c469c] mt-12 py-8 w-full px-6 text-[#d4adfc] text-sm">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
-      <div>
-        <h3 class="text-[#d4adfc] font-semibold mb-3">Contact Us</h3>
-        <p>College Address: 123 College St, City, State, ZIP</p>
-        <p>Phone: (123) 456-7890</p>
-        <p>Email: info@yourcollege.edu</p>
-      </div>
-      <div>
-        <h3 class="text-[#d4adfc] font-semibold mb-3">Quick Links</h3>
-        <ul class="space-y-1">
-          <li><a class="hover:underline" href="#">Terms and Conditions</a></li>
-          <li><a class="hover:underline" href="#">Privacy Policy</a></li>
-          <li><a class="hover:underline" href="#">Academic Calendar</a></li>
-          <li><a class="hover:underline" href="#">Student Handbook</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-[#d4adfc] font-semibold mb-3">Follow Us</h3>
-        <ul class="flex space-x-4">
-          <li><a aria-label="Facebook" class="hover:text-[#d4adfc]" href="#"><i class="fab fa-facebook fa-lg"></i></a>
-          </li>
-          <li><a aria-label="Twitter" class="hover:text-[#d4adfc]" href="#"><i class="fab fa-twitter fa-lg"></i></a>
-          </li>
-          <li><a aria-label="Instagram" class="hover:text-[#d4adfc]" href="#"><i class="fab fa-instagram fa-lg"></i></a>
-          </li>
-          <li><a aria-label="LinkedIn" class="hover:text-[#d4adfc]" href="#"><i class="fab fa-linkedin fa-lg"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <p class="text-center text-xs text-[#5c469c] mt-8">&copy; 2024 Your College Name. All rights reserved.</p>
-  </footer>
-</body>
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const table = document.querySelector('table');
+    const noResultsMessage = document.getElementById('noResultsMessage');
 
+    searchInput.addEventListener('input', function () {
+      const filter = this.value.toLowerCase();
+      let visibleCount = 0;
+      const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+      for (let i = 0; i < rows.length; i++) {
+        const bookNameCell = rows[i].getElementsByTagName('td')[1];
+        if (bookNameCell) {
+          const textValue = bookNameCell.textContent || bookNameCell.innerText;
+          if (textValue.toLowerCase().indexOf(filter) > -1) {
+            rows[i].style.display = '';
+            visibleCount++;
+          } else {
+            rows[i].style.display = 'none';
+          }
+        }
+      }
+      noResultsMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+    });
+  </script>
+</body>
 </html>
