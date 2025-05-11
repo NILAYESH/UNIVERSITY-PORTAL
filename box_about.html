@@ -1,76 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your College Name - Home</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTTXJN3UJn5vZf9e1Vq1x6b5qY5T+G/bFz7bO+jFJz0lJ6/Y9pTRqhG9G1Q4UR+CeulR9O7VWQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-    :root {
-      --color1: #0c134f;
-      --color2: #1d267d;
-      --color3: #5c469c;
-      --color4: #d4adfc;
-    }
-    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
-    * {
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTTXJN3UJn5vZf9e1Vq1x6b5qY5T+G/bFz7bO+jFJz0lJ6/Y9pTRqhG9G1Q4UR+CeulR9O7VWQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    *{
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      scroll-behavior: smooth;
     }
-
     body {
       font-family: 'Nunito', sans-serif;
       margin: 0;
       min-height: 100vh;
+      max-width: 100%;
       overflow-x: hidden;
-      background: linear-gradient(-45deg, var(--color1), var(--color2), var(--color3), var(--color4));
-
+      background: linear-gradient(-45deg, #0c134f, #1d267d, #5c469c, #d4adfc);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
       color: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     header {
-      background: var(--color1);
-      padding: 20px;
-      text-align: center;
-      font-size: 2rem;
-      color: var(--color4);
-      text-shadow: 0 0 10px var(--color4);
+      max-width: 100%;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      border-bottom: 1px solid transparent;
+      position: sticky;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 50;
+      transition: background 0.9s ease, border-bottom 0.9s ease;
     }
 
-    .fullscreen-image {
-      max-width: 100%;
-      height: 95;
-      width: 95;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
+    header nav {
+      flex-grow: 1;
       display: flex;
       justify-content: center;
-      align-items: center;
+    }
+
+    header .btn-login {
+      margin-left: auto;
+    }
+
+    footer {
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    header.scrolled {
+      background: #27194b;
+      border-bottom: 1px solid #30363d;
+    }
+
+    h1 {
+      font-size: 1.875rem;
+      font-weight: 800;
+      user-select: none;
+      margin-bottom: 0;
+      text-shadow:
+        0 0 10px #0c134f,
+        0 0 20px #d4adfc,
+        0 0 30px #1d267d,
+        0 0 40px #d4adfc;
     }
 
     nav {
       display: flex;
+      gap: 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #8b949e;
+      margin-left: auto;
+      margin-right: auto;
       justify-content: center;
-      gap: 30px;
-      background: var(--color1);
-      padding: 10px 0;
+      width: fit-content;
     }
 
     nav a {
-      color: white;
+      transition: color 0.2s ease;
+      color: #8b949e;
       text-decoration: none;
-      transition: color 0.3s, text-shadow 0.3s;
     }
 
     nav a:hover {
-      color: var(--color4);
+      color: #d4adfc;
       text-shadow:
-        0 0 5px var(--color4),
-        0 0 10px var(--color4);
+        0 0 5px #d4adfc,
+        0 0 10px #d4adfc;
+    }
+
+    .btn-login {
+      padding: 0.5rem 1.25rem;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 1.5rem;
+      border: 2px solid transparent;
+      background: linear-gradient(-45deg, #0c134f, #1d267d, #5c469c) padding-box, linear-gradient(45deg, #d4adfc, #5c469c) border-box;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+      transition: box-shadow 0.3s ease;
+      box-shadow: 0 0 10px #d4adfc;
+      display: inline-block;
+      user-select: none;
+      background-color: #1a1a2e;
+      background-clip: padding-box;
+    }
+
+    .btn-login:hover {
+      box-shadow: 0 0 20px #5c469c;
+    }
+
+    .fullscreen-image {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0;
     }
 
     section {
@@ -170,31 +240,40 @@
     }
   </style>
 </head>
+
 <body>
-  <header>CYROTICAL UNIVERSITY</header>
-  <nav>
-    <a href="Home.html">Home</a>
-    <a href="#about">About</a>
-    <a href="#courses">Courses</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-  </nav>
-    <div class="fullscreen-image"><img src="ChatGPT Image Apr 20, 2025, 11_21_21 PM.png" alt=""></div>
+  <header>
+    <h1>CYROTICAL UNIVERSITY</h1>
+    <nav>
+      <a href="Home.html">Home</a>
+      <a href="#about">About</a>
+      <a href="#courses">Courses</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="index.html" class="btn-login">Student Login</a>
+  </header>
+  <div class="fullscreen-image"><img src="ChatGPT Image Apr 20, 2025, 11_21_21 PM.png" alt=""></div>
   <section id="about">
     <h2>About Us</h2>
-    <p>Welcome to Your College! We are dedicated to providing quality education and fostering innovation and creativity among students.</p>
-    <p>Our college believes in holistic development, encouraging students to excel not just academically, but also in extracurricular activities. Our vibrant campus life and supportive faculty ensure a fulfilling educational journey.</p>
+    <p>Welcome to Your College! We are dedicated to providing quality education and fostering innovation and creativity
+      among students.</p>
+    <p>Our college believes in holistic development, encouraging students to excel not just academically, but also in
+      extracurricular activities. Our vibrant campus life and supportive faculty ensure a fulfilling educational
+      journey.</p>
   </section>
 
   <section id="courses">
     <h2>Our Courses</h2>
     <p>Explore a wide range of academic programs and find the one that suits your interests and career goals.</p>
-    <p>We offer undergraduate, postgraduate, and diploma courses across various disciplines such as Science, Commerce, Arts, Technology, and Management. Our curriculum is designed to be industry-relevant and future-ready.</p>
+    <p>We offer undergraduate, postgraduate, and diploma courses across various disciplines such as Science, Commerce,
+      Arts, Technology, and Management. Our curriculum is designed to be industry-relevant and future-ready.</p>
   </section>
 
-    <section id="gallery">
+  <section id="gallery">
     <h2>Gallery</h2>
-    <img class="gallery-image" src="https://www.belmont.edu/stories/articles/2024/_images/header-ad.jpg" alt="Campus Image" />
+    <img class="gallery-image" src="https://www.belmont.edu/stories/articles/2024/_images/header-ad.jpg"
+      alt="Campus Image" />
     <p>Take a glimpse at our beautiful campus, state-of-the-art classrooms, and vibrant student activities.</p>
   </section>
 
@@ -229,4 +308,5 @@
     });
   </script>
 </body>
+
 </html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Courses - Cyrotical University</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Removed Tailwind CSS CDN as per request -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet" />
+  <style>
+    /* Cloned Tailwind CSS minimal styles for layout and typography */
+    .list-disc { list-style-type: disc; }
+    .list-inside { padding-left: 1.25rem; }
+    .space-y-2 > :not(template) ~ :not(template) { margin-top: 0.5rem; }
+    .max-w-md { max-width: 28rem; }
+    .bg-white { background-color: white; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .p-6 { padding: 1.5rem; }
+    .shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06); }
+    .text-black { color: black; }
+    .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+    .font-bold { font-weight: 700; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: linear-gradient(-45deg, #0c134f, #1d267d, #5c469c, #d4adfc);
+
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: white;
+    }
+
+    header.scrolled {
+      background: #27194b;
+      /* border-bottom: 1px solid #30363d; */
+      transition: background 0.9s ease, border-bottom 0.9s ease;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+
+    .glow-container {
+      box-shadow:
+        0 0 10px #4019b3,
+        0 0 20px #7f5af0,
+        0 0 30px #2b117b,
+        0 0 40px #7f5af0;
+    }
+
+    .header-link:hover {
+      color: #7f5af0;
+      text-shadow:
+        0 0 5px #7f5af0,
+        0 0 10px #7f5af0;
+    }
+  </style>
+</head>
+
+<body class="bg-[#0d1117] text-white min-h-screen flex flex-col">
+  <header
+    class="w-full py-6 flex flex-col sm:flex-row items-center justify-between px-5  border-[] sticky left-0 top-0 z-10  backdrop-blur-sm">
+    <h1 class="text-3xl sm:text-4xl font-extrabold glow-text select-none mb-4 sm:mb-0">CYROTICAL UNIVERSITY</h1>
+    <nav class="flex space-x-6 text-sm font-semibold text-[#8b949e]">
+      <a class="header-link transition duration-200" href="Home.html">Home</a>
+      <a class="header-link transition duration-200" href="box_about.html">About</a>
+      <a class="header-link transition duration-200" href="admission.html">Admissions</a>
+      <a class="header-link transition duration-200" href="academics.html">Academics</a>
+      <a class="header-link transition duration-200" href="contact.html">Contact</a>
+      <!-- <a class="header-link transition duration-200" href="box_about.html">More</a> -->
+    </nav>
+  </header>
+
+  <div class="min-h-screen flex">
+    <!-- Sidebar -->
+    <!-- <aside class="w-64 bg-purple-800 text-white p-6 rounded-tr-2xl rounded-br-2xl flex flex-col">
+      <div class="flex items-center justify-center mb-8">
+        <div class="bg-purple-800 p-4 rounded-lg">
+          <i class="fas fa-graduation-cap fa-2x"></i>
+        </div>
+      </div>
+      <nav class="flex-1 space-y-4">
+        <a href="dashboard_updated.html" class="flex items-center space-x-3 text-lg font-semibold hover:text-purple-200">
+          <i class="fas fa-home"></i><span>Dashboard</span>
+        </a>
+        <a href="payment_info_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100">
+          <i class="fas fa-credit-card"></i><span>Payment Info</span>
+        </a>
+        <a href="courses_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100">
+          <i class="fas fa-book-open"></i><span>Courses</span>
+        </a>
+        <a href="drop_semester_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100">
+          <i class="fas fa-times-circle"></i><span>Drop Semester</span>
+        </a>
+        <a href="result_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100">
+          <i class="fas fa-chart-bar"></i><span>Result</span>
+        </a>
+        <a href="notice_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100">
+          <i class="fas fa-bell"></i><span>Notice</span>
+        </a>
+        <a href="schedule_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100">
+          <i class="fas fa-calendar-alt"></i><span>Schedule</span>
+        
+        </a>
+        <a href="library.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100 hover:text-[#d4adfc]">
+          <i class="fas fa-book"></i><span>Library</span>
+        </a>
+        <a href="attendance.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100"><i
+          class="fas fa-check-circle"></i><span>Attendance</span></a>
+        <a href="canteen.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100"><i class="fas fa-utensils"></i><span>Canteen</span></a>
+      </nav>
+      <button id="logoutBtn" class="mt-8 flex items-center space-x-3 opacity-75 hover:opacity-100 self-start">
+        <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+      </button>
+    </aside> -->
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8 max-w-4xl mx-auto w-full">
+      <h2 class="text-3xl font-bold mb-6">Courses</h2>
+      <p class="mb-4" id="greeting">Hello, Cyrus! Here are your enrolled courses for this semester.</p>
+      <ul class="list-disc list-inside space-y-2 bg-white rounded-xl p-6 shadow text-black w-full">
+        <li>
+          <u><b><a style="color:#0c134f", href="https://mrcet.com/downloads/digital_notes/HS/OOP_10122018.pdf">Object Oriented Programming</a></b></u>
+          <ul class="list-disc list-inside space-y-1 mt-2 text-sm text-gray-700">
+            <li>Introduction to OOP concepts</li>
+            <li>Classes and Objects</li>
+            <li>Inheritance and Polymorphism</li>
+            <li>Encapsulation and Abstraction</li>
+            <li>Practical projects and assignments</li>
+          </ul>
+        </li>
+        <li>
+          <u><b><a href="https://www.auhd.edu.ye/upfiles/elibrary/Azal2020-01-22-12-28-11-76901.pdf" style="color: #0c134f;">Fundamentals of Database Systems</a></b></u>
+          <ul class="list-disc list-inside space-y-1 mt-2 text-sm text-gray-700">
+            <li>Database design and ER modeling</li>
+            <li>SQL queries and optimization</li>
+            <li>Normalization and indexing</li>
+            <li>Transaction management</li>
+            <li>Introduction to NoSQL databases</li>
+          </ul>
+        </li>
+        <li>
+          <u><b><a href="https://www.mta.ca/~rrosebru/oldcourse/263114/Dsa.pdf" style="color: #0c134f;">Data Structures and Algorithms</a></b></u>
+          <ul class="list-disc list-inside space-y-1 mt-2 text-sm text-gray-700">
+            <li>Arrays, Linked Lists, Stacks, Queues</li>
+            <li>Trees and Graphs</li>
+            <li>Sorting and Searching algorithms</li>
+            <li>Algorithm complexity and Big O notation</li>
+            <li>Problem-solving sessions</li>
+          </ul>
+        </li>
+        <li>
+          <u><b><a href="https://www.cl.cam.ac.uk/teaching/1011/OpSystems/os1a-slides.pdf" style="color: #0c134f;">Operating Systems</a></b></u>
+          <ul class="list-disc list-inside space-y-1 mt-2 text-sm text-gray-700">
+            <li>Process management and scheduling</li>
+            <li>Memory management</li>
+            <li>File systems and I/O</li>
+            <li>Concurrency and synchronization</li>
+            <li>Practical OS projects</li>
+          </ul>
+        </li>
+        <li>
+          <u><b><a href="https://mrcet.com/downloads/digital_notes/CSE/III%20Year/COMPUTER%20NETWORKS%20NOTES.pdf" style="color: #0c134f;">Computers Networks</a></b></u>
+          <ul class="list-disc list-inside space-y-1 mt-2 text-sm text-gray-700">
+            <li>Network models and protocols</li>
+            <li>IP addressing and subnetting</li>
+            <li>Routing and switching</li>
+            <li>Network security basics</li>
+            <li>Hands-on networking labs</li>
+          </ul>
+        </li>
+      </ul>
+      <section class="mt-8 bg-white rounded-xl p-6 shadow text-black w-full">
+        <a href="https://www.ed.gov/sites/ed/files/parents/academic/involve/schoolbox/brochure.pdf" style="color: #0c134f", class="text-xl font-bold mb-4">Additional Academic Resources</a>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Access to online libraries and journals</li>
+          <li>Workshops and seminars on emerging technologies</li>
+          <li>Peer study groups and tutoring sessions</li>
+          <li>Internship and project opportunities</li>
+          <li>Career counseling and placement support</li>
+        </ul>
+      </section>
+      <section style="color: #0c134f", class="mt-8 bg-white rounded-xl p-6 shadow text-black w-full">
+        <a href="https://www.wcupa.edu/distanceed/documents/BestPracticesContentModules.pdf" class="text-xl font-bold mb-4">Recommended Modules</a>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Artificial Intelligence and Machine Learning</li>
+          <li>Cloud Computing and Virtualization</li>
+          <li>Cybersecurity Fundamentals</li>
+          <li>Mobile Application Development</li>
+          <li>Data Science and Big Data Analytics</li>
+        </ul>
+      </section>
+
+      <script>
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 8) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+
+        // Update greeting dynamically based on logged-in user
+        document.addEventListener('DOMContentLoaded', () => {
+          const loggedInUser = localStorage.getItem('studentName') || 'Student';
+          const greeting = document.getElementById('greeting');
+          if (greeting) {
+            greeting.textContent = `Hello, ${loggedInUser}! Here are your enrolled courses for this semester.`;
+          }
+        });
+      </script>
+    </main>
+  </div>
+
+  <footer
+    class="bg-[#161b22] border-t border-[#30363d] mt-12 py-8 w-full px-6 text-[#8b949e] text-sm">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      <div>
+        <h3 class="text-white font-semibold mb-3">Contact Us</h3>
+        <p>College Address: 123 College St, City, State, ZIP</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Email: info@yourcollege.edu</p>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-3">Quick Links</h3>
+        <ul class="space-y-1">
+          <li><a class="hover:underline" href="#">Terms and Conditions</a></li>
+          <li><a class="hover:underline" href="#">Privacy Policy</a></li>
+          <li><a class="hover:underline" href="#">Academic Calendar</a></li>
+          <li><a class="hover:underline" href="#">Student Handbook</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-3">Follow Us</h3>
+        <ul class="flex space-x-4">
+          <li><a aria-label="Facebook" class="hover:text-[#7f5af0]" href="#"><i class="fab fa-facebook fa-lg"></i></a>
+          </li>
+          <li><a aria-label="Twitter" class="hover:text-[#7f5af0]" href="#"><i class="fab fa-twitter fa-lg"></i></a>
+          </li>
+          <li><a aria-label="Instagram" class="hover:text-[#7f5af0]" href="#"><i class="fab fa-instagram fa-lg"></i></a>
+          </li>
+          <li><a aria-label="LinkedIn" class="hover:text-[#7f5af0]" href="#"><i class="fab fa-linkedin fa-lg"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <p class="text-center text-xs text-[#484f58] mt-8">&copy; 2024 Your College Name. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+      localStorage.removeItem('studentName');
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+
+</html>

@@ -10,11 +10,16 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
 
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
     body {
       font-family: 'Nunito', sans-serif;
-      margin: 0;
       min-height: 100vh;
-      overflow-x: hidden;
       background: linear-gradient(-45deg, #0c134f, #1d267d, #5c469c, #d4adfc);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
@@ -29,8 +34,8 @@
 
     header.scrolled {
       background: #1d267d;
-      border-bottom: 1px solid #5c469c;
-      transition: background 0.9s ease, border-bottom 0.9s ease;
+      border-bottom: 0.1px solid #5c469c;
+      transition: background 0.1s ease, border-bottom 0.1s ease;
     }
 
     @keyframes gradientBG {
@@ -84,9 +89,9 @@
   </style>
 </head>
 
-<body class="bg-[#0c134f] text-white min-h-screen flex flex-col">
+  <body class="bg-[#0c134f] text-white  flex flex-col min-h-screen">
   <header
-    class="w-full py-6 flex flex-col sm:flex-row items-center justify-between px-4 border-b border-[#5c469c]">
+    class="w-full py-6 flex flex-col sm:flex-row items-center justify-between px-4 ">
     <h1 class="text-3xl sm:text-4xl font-extrabold glow-text select-none mb-4 sm:mb-0">CYROTICAL UNIVERSITY</h1>
     <nav class="flex space-x-6 text-sm font-semibold text-[#8b949e]">
       <a class="header-link transition duration-200" href="Home.html">Home</a>
@@ -98,9 +103,9 @@
     </nav>
   </header>
 
-  <div class="min-h-screen flex">
+  <div class="flex flex-grow">
     <!-- Sidebar -->
-    <aside class="w-64 bg-[#1d267d] text-white p-6 rounded-tr-2xl rounded-br-2xl flex flex-col menu">
+    <!-- <aside class="w-64 bg-[#1d267d] text-white p-6 rounded-tr-2xl rounded-br-2xl flex flex-col menu">
       <div class="flex items-center justify-center mb-8">
         <div class="bg-[#1d267d] p-4 rounded-lg">
           <i class="fas fa-graduation-cap fa-2x"></i>
@@ -139,19 +144,19 @@
       <button id="logoutBtn" class="mt-8 flex items-center space-x-3 opacity-75 hover:opacity-100 self-start">
         <i class="fas fa-sign-out-alt"></i><span>Logout</span>
       </button>
-    </aside>
+    </aside> -->
 
     <!-- Main Content -->
-    <main class="flex-1 p-8">
+    <main style="max-width: 900px; margin: 0 auto; padding: 2rem;">
       <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
       <p>If you have any questions or need assistance, please reach out to us using the contact details below.</p>
       <div class="mt-6 max-w-lg bg-[#1d267d] p-6 rounded-lg shadow-lg">
         <h3 class="font-semibold mb-2">Address</h3>
         <p>123 College St, City, State, ZIP</p>
         <h3 class="font-semibold mt-4 mb-2">Phone</h3>
-        <p>(123) 456-7890</p>
+        <p>(+91) 456-7890</p>
         <h3 class="font-semibold mt-4 mb-2">Email</h3>
-        <p>info@yourcollege.edu</p>
+        <p>contact@cyroticaluniversity.edu</p>
       </div>
     </main>
   </div>
@@ -161,8 +166,8 @@
       <div>
         <h3 class="text-[#d4adfc] font-semibold mb-3">Contact Us</h3>
         <p>College Address: 123 College St, City, State, ZIP</p>
-        <p>Phone: (123) 456-7890</p>
-        <p>Email: info@yourcollege.edu</p>
+        <p>Phone: (+91) 456-7890</p>
+        <p>Email: contact@cyroticaluniversity.edu</p>
       </div>
       <div>
         <h3 class="text-[#d4adfc] font-semibold mb-3">Quick Links</h3>
@@ -189,6 +194,16 @@
     </div>
     <p class="text-center text-xs text-[#5c469c] mt-8">&copy; 2024 Cyrotical University. All rights reserved.</p>
   </footer>
+  <script>
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 8) { // approx half an inch
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
 </body>
 
 </html>
