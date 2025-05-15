@@ -9,13 +9,21 @@
   <title>Dashboard - Cyrotical University</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet" />
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     :root {
       --color1: #0c134f;
       --color2: #1d267d;
       --color3: #5c469c;
       --color4: #d4adfc;
     }
+
     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
+
     body {
       font-family: 'Nunito', sans-serif;
       margin: 0;
@@ -31,6 +39,7 @@
 
     header {
       width: 100%;
+      padding: 0 1.3rem;
       padding-top: 1.5rem;
       padding-bottom: 1.5rem;
       display: flex;
@@ -45,13 +54,14 @@
       top: 0;
       background: transparent;
       z-index: 50;
-      transition: background 0.9s ease, border-bottom 0.9s ease;}
+      transition: background 0.9s ease, border-bottom 0.9s ease;
+    }
 
     header.scrolled {
       background: var(--color1);
       border-bottom: 1px solid #30363d;
     }
-    
+
 
     header h1 {
       font-size: 2.25rem;
@@ -64,8 +74,8 @@
         0 0 30px var(--color2),
         0 0 40px var(--color4);
     }
-    
-    
+
+
     nav {
       display: flex;
       gap: 1.5rem;
@@ -103,20 +113,25 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
     }
 
     #sidebar-icon {
       background-color: #5a2a8a;
-      padding: 1rem;
+      padding: 1rem 0;
       border-radius: 0.5rem;
       margin-bottom: 2rem;
       display: flex;
-      justify-content: center;
+      justify-content: left;
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
     }
 
     #sidebar-icon i {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
 
     #sidebar-nav {
@@ -161,6 +176,50 @@
     #sidebar button.sidebar-logout:hover {
       color: #cbb3ff;
     }
+
+    /* ===== Sidebar Collapse Styles ===== */
+    #shrinkBtn {
+      position: absolute;
+      top: 1rem;
+      right: -1.5rem;
+      background: var(--color3);
+      border: none;
+      border-radius: .25rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform .3s ease, background .3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    #shrinkBtn i {
+      transition: transform .3s ease;
+      color: var(--color4);
+    }
+
+    /* collapsed state */
+    body.sidebar-shrink #sidebar {
+      width: 4rem;
+    }
+
+    body.sidebar-shrink #sidebar .sidebar-link span,
+    body.sidebar-shrink #sidebar button.sidebar-logout span {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    body.sidebar-shrink #shrinkBtn i {
+      transform: rotate(180deg);
+    }
+
+    /* hover feedback */
+    #shrinkBtn:hover {
+      background: var(--color4);
+    }
+
 
     #main-content {
       flex: 1;
@@ -543,14 +602,15 @@
       margin-bottom: 0.75rem;
     }
 
-    .footer-section ul {
+    .footer-section .links {
       list-style: none;
       padding: 0;
       margin: 0;
       display: flex;
-      flex-direction: column;
+      /* flex-direction: column; */
       gap: 0.25rem;
     }
+
 
     .footer-section ul li a {
       text-decoration: none;
@@ -585,10 +645,19 @@
       color: #484f58;
       margin-top: 2rem;
     }
+
+    .forHideClass {
+      display: none;
+    }
+
+    ul li {
+      list-style: none;
+    }
   </style>
+
 </head>
 
-<body>
+<body class="sidebar-shrink">
   <header>
     <h1>CYROTICAL UNIVERSITY</h1>
     <nav>
@@ -603,20 +672,29 @@
 
   <div id="container">
     <aside id="sidebar">
+      <button id="shrinkBtn" title="Toggle Sidebar" aria-label="Toggle Sidebar">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
       <div id="sidebar-icon">
         <i class="fas fa-graduation-cap fa-2x"></i>
+        <p id="forHide" class="sidebar-link forHideClass"><b>Menu</b></p>
       </div>
       <nav id="sidebar-nav">
-        <a href="dashboard_updated.html" class="sidebar-link active"><i class="fas fa-home"></i><span>Dashboard</span></a>
-        <a href="payment_info_updated.html" class="sidebar-link"><i class="fas fa-credit-card"></i><span>Payment Info</span></a>
+        <a href="dashboard_updated.html" class="sidebar-link active"><i
+            class="fas fa-home"></i><span>Dashboard</span></a>
+        <a href="payment_info_updated.html" class="sidebar-link"><i class="fas fa-credit-card"></i><span>Payment
+            Info</span></a>
         <a href="courses_updated.html" class="sidebar-link"><i class="fas fa-book-open"></i><span>Courses</span></a>
-        <a href="drop_semester_updated.html" class="sidebar-link"><i class="fas fa-times-circle"></i><span>Drop Semester</span></a>
+        <a href="drop_semester_updated.html" class="sidebar-link"><i class="fas fa-times-circle"></i><span>Drop
+            Semester</span></a>
         <a href="result_updated.html" class="sidebar-link"><i class="fas fa-chart-bar"></i><span>Result</span></a>
         <a href="notice_updated.html" class="sidebar-link"><i class="fas fa-bell"></i><span>Notice</span></a>
         <a href="schedule_updated.html" class="sidebar-link"><i class="fas fa-calendar-alt"></i><span>Schedule</span></a>
+            <a href="library.html" class="sidebar-link"><i class="fas fa-book"></i><span>Library</span></a>
         <a href="attendance.html" class="sidebar-link"><i class="fas fa-user-check"></i><span>Attendance</span></a>
         <a href="canteen.html" class="sidebar-link"><i class="fas fa-utensils"></i><span>Canteen</span></a>
-        <a href="library.html" class="sidebar-link"><i class="fas fa-book"></i><span>Library</span></a>
+
 
       </nav>
       <button id="logoutBtn" class="sidebar-logout">
@@ -630,24 +708,24 @@
           <i class="fas fa-search"></i>
           <input type="text" placeholder="Search" id="search-input" />
         </div>
-      <div id="profile-container">
-        <img class="profile-img" src="profile1.png" alt="Profile" />
-        <div id="profile-text">
-          <p id="dashboardName">Cyrus</p>
-          <p id="dashboardYear">3rd Year</p>
+        <div id="profile-container">
+          <img class="profile-img" src="profile1.png" alt="Profile" />
+          <div id="profile-text">
+            <p id="dashboardName">Cyrus</p>
+            <p id="dashboardYear">3rd Year</p>
+          </div>
+          <i class="fas fa-bell" id="notification-icon"></i>
         </div>
-        <i class="fas fa-bell" id="notification-icon"></i>
       </div>
-    </div>
 
-    <section id="welcome-section">
-      <div id="welcome-text">
-        <p id="currentDate"></p>
-        <h2>Welcome back, <span id="userName"></span>!</h2>
-        <p>Always stay updated in your student portal</p>
-      </div>
-      <img class="profile-img" src="profile1.png" alt="Profile" />
-    </section>
+      <section id="welcome-section">
+        <div id="welcome-text">
+          <p id="currentDate"></p>
+          <h2>Welcome back, <span id="userName"></span>!</h2>
+          <p>Always stay updated in your student portal</p>
+        </div>
+        <img class="profile-img" src="profile1.png" alt="Profile" />
+      </section>
 
       <section id="stats-section">
         <div class="stat-card">
@@ -678,7 +756,9 @@
               <p>Object Oriented Programming</p>
               <div class="course-actions">
                 <button>View</button>
-                <img src="oop-object-oriented-programming-acronym-oop-object-oriented-programming-acronym-technology-concept-background-202533106.jpeg" alt="Course 1" />
+                <img
+                  src="oop-object-oriented-programming-acronym-oop-object-oriented-programming-acronym-technology-concept-background-202533106.jpeg"
+                  alt="Course 1" />
               </div>
             </div>
             <div class="course-item">
@@ -695,7 +775,8 @@
           <div id="instructors">
             <h2>Course Instructors</h2>
             <div id="instructor-list">
-              <img src="depositphotos_174559478-stock-photo-stylish-teacher-lecturer-concept-portrait.jpg" alt="Instructor 1" />
+              <img src="depositphotos_174559478-stock-photo-stylish-teacher-lecturer-concept-portrait.jpg"
+                alt="Instructor 1" />
               <img src="download (2).jpeg" alt="Instructor 2" />
               <img src="8928MCQ3K61SH4U0CCBV.jpg" alt="Instructor 3" />
             </div>
@@ -738,12 +819,12 @@
           <li><a href="#">Terms and Conditions</a></li>
           <li><a href="#">Privacy Policy</a></li>
           <li><a href="#">Academic Calendar</a></li>
-          <li><a href="#">Student Handbook</a></li>
+          <!-- <li><a href="#">Student Handbook</a></li> -->
         </ul>
       </div>
       <div class="footer-section">
         <h3>Follow Us</h3>
-        <ul id="footer-social">
+        <ul id="footer-social" class="links">
           <li><a aria-label="Facebook" href="#"><i class="fab fa-facebook fa-lg"></i></a></li>
           <li><a aria-label="Twitter" href="#"><i class="fab fa-twitter fa-lg"></i></a></li>
           <li><a aria-label="Instagram" href="#"><i class="fab fa-instagram fa-lg"></i></a></li>
@@ -756,13 +837,13 @@
 
   <script>
     const header = document.querySelector('header');
-        window.addEventListener('scroll', () => {
-          if (window.scrollY > 8) {
-            header.classList.add('scrolled');
-          } else {
-            header.classList.remove('scrolled');
-          }
-        });
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 8) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
     document.getElementById('logoutBtn')?.addEventListener('click', () => {
       localStorage.removeItem('studentName');
       window.location.href = 'index.html';
@@ -780,6 +861,16 @@
     const storedName = localStorage.getItem('studentName') || 'Student';
     document.getElementById('userName').textContent = storedName;
     document.getElementById('dashboardName').textContent = storedName;
+
+
+    // Sidebar collapse/expand
+    const shrinkBtn = document.getElementById('shrinkBtn');
+    shrinkBtn.addEventListener('click', () => {
+      document.body.classList.toggle('sidebar-shrink');
+      document.getElementById('forHide').classList.toggle('forHideClass');
+    });
+
   </script>
 </body>
+
 </html>

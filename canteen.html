@@ -2,11 +2,10 @@
 <html lang="en">
 
 <head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
   <meta charset="UTF-8" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <title>Canteen - Cyrotical University</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -21,30 +20,19 @@
       --color4: #d4adfc;
     }
 
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
+
     body {
       font-family: 'Nunito', sans-serif;
       margin: 0;
       min-height: 100vh;
+      overflow-x: hidden;
       background: linear-gradient(-45deg, var(--color1), var(--color2), var(--color3));
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
       color: white;
       display: flex;
       flex-direction: column;
-    }
-
-    @keyframes gradientBG {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
     }
 
     header {
@@ -89,20 +77,30 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
     }
 
     #sidebar-icon {
       background-color: #5a2a8a;
-      padding: 1rem;
+      padding: 1rem 0;
       border-radius: 0.5rem;
       margin-bottom: 2rem;
       display: flex;
-      justify-content: center;
+      justify-content: left;
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
     }
 
     #sidebar-icon i {
-      font-size: 2rem;
+      font-size: 1.8rem;
+    }
+
+    /* Hide the "Menu" text when sidebar is shrunk */
+    body.sidebar-shrink #forHide {
+      display: none;
     }
 
     #sidebar-nav {
@@ -146,6 +144,49 @@
 
     #sidebar button.sidebar-logout:hover {
       color: #cbb3ff;
+    }
+
+    /* ===== Sidebar Collapse Styles ===== */
+    #shrinkBtn {
+      position: absolute;
+      top: 1rem;
+      right: -1.5rem;
+      background: var(--color3);
+      border: none;
+      border-radius: .25rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform .3s ease, background .3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    #shrinkBtn i {
+      transition: transform .3s ease;
+      color: var(--color4);
+    }
+
+    /* collapsed state */
+    body.sidebar-shrink #sidebar {
+      width: 4rem;
+    }
+
+    body.sidebar-shrink #sidebar .sidebar-link span,
+    body.sidebar-shrink #sidebar button.sidebar-logout span {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    body.sidebar-shrink #shrinkBtn i {
+      transform: rotate(180deg);
+    }
+
+    /* hover feedback */
+    #shrinkBtn:hover {
+      background: var(--color4);
     }
 
     #main-content {
@@ -196,35 +237,47 @@
       margin: 0;
       font-size: 0.9rem;
     }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
   </style>
 </head>
 
-<body>
+<body class="sidebar-shrink">
   <header>
     <h1>CYROTICAL UNIVERSITY</h1>
   </header>
 
   <div id="container">
     <aside id="sidebar">
+      <button id="shrinkBtn" title="Toggle Sidebar" aria-label="Toggle Sidebar">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
       <div id="sidebar-icon">
-        <i class="fas fa-graduation-cap fa-2x"></i>
+        <i class="fas fa-graduation-cap fa-2x"></i><p id="forHide" class="sidebar-link forHideClass"><b>Menu</b></p>
       </div>
       <nav id="sidebar-nav">
         <a href="dashboard_updated.html" class="sidebar-link"><i class="fas fa-home"></i><span>Dashboard</span></a>
-        <a href="payment_info_updated.html" class="sidebar-link"><i class="fas fa-credit-card"></i><span>Payment
-            Info</span></a>
-        <a href="registration_updated.html" class="sidebar-link"><i
-            class="fas fa-user-plus"></i><span>Registration</span></a>
+        <a href="payment_info_updated.html" class="sidebar-link"><i class="fas fa-credit-card"></i><span>Payment Info</span></a>
+        <a href="registration_updated.html" class="sidebar-link"><i class="fas fa-user-plus"></i><span>Registration</span></a>
         <a href="courses_updated.html" class="sidebar-link"><i class="fas fa-book-open"></i><span>Courses</span></a>
-        <a href="drop_semester_updated.html" class="sidebar-link"><i class="fas fa-times-circle"></i><span>Drop
-            Semester</span></a>
+        <a href="drop_semester_updated.html" class="sidebar-link"><i class="fas fa-times-circle"></i><span>Drop Semester</span></a>
         <a href="result_updated.html" class="sidebar-link"><i class="fas fa-chart-bar"></i><span>Result</span></a>
         <a href="notice_updated.html" class="sidebar-link"><i class="fas fa-bell"></i><span>Notice</span></a>
-        <a href="schedule_updated.html" class="sidebar-link"><i
-            class="fas fa-calendar-alt"></i><span>Schedule</span></a>
-            <a href="library.html" class="sidebar-link flex items-center space-x-3 opacity-75 hover:opacity-100 hover:text-[#d4adfc]">
-              <i class="fas fa-book"></i><span>Library</span>
-            </a>
+        <a href="schedule_updated.html" class="sidebar-link"><i class="fas fa-calendar-alt"></i><span>Schedule</span></a>
+        <a href="library.html" class="sidebar-link"><i class="fas fa-book"></i><span>Library</span></a>
         <a href="attendance.html" class="sidebar-link"><i class="fas fa-check-circle"></i><span>Attendance</span></a>
         <a href="canteen.html" class="sidebar-link active"><i class="fas fa-utensils"></i><span>Canteen</span></a>
       </nav>
@@ -364,6 +417,19 @@
         }
       }
       noResultsMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+    });
+  </script>
+  <script>
+    // Sidebar collapse/expand
+    const shrinkBtn = document.getElementById('shrinkBtn');
+    shrinkBtn.addEventListener('click', () => {
+      document.body.classList.toggle('sidebar-shrink');
+      document.getElementById('forHide').classList.toggle('forHideClass');
+    });
+
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+      localStorage.removeItem('studentName');
+      window.location.href = 'index.html';
     });
   </script>
 </body>

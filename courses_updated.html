@@ -3,44 +3,24 @@
 
 <head>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-
   <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Courses - Cyrotical University</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Removed Tailwind CSS CDN as per request -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet" />
   <style>
-    /* Cloned Tailwind CSS minimal styles for layout and typography */
-    .list-disc { list-style-type: disc; }
-    .list-inside { padding-left: 1.25rem; }
-    .space-y-2 > :not(template) ~ :not(template) { margin-top: 0.5rem; }
-    .max-w-md { max-width: 28rem; }
-    .bg-white { background-color: white; }
-    .rounded-xl { border-radius: 0.75rem; }
-    .p-6 { padding: 1.5rem; }
-    .shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06); }
-    .text-black { color: black; }
-    .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
-    .font-bold { font-weight: 700; }
-    .mb-6 { margin-bottom: 1.5rem; }
-    .mb-4 { margin-bottom: 1rem; }
+    /* Base Styles */
     body {
       font-family: 'Nunito', sans-serif;
       margin: 0;
       min-height: 100vh;
       overflow-x: hidden;
-      background: linear-gradient(-45deg, #0c134f, #1d267d, #5c469c, #d4adfc);
-
+      background: linear-gradient(-45deg, #0c134f, #1d267d, #5c469c);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
       color: white;
-    }
-
-    header.scrolled {
-      background: #27194b;
-      /* border-bottom: 1px solid #30363d; */
-      transition: background 0.9s ease, border-bottom 0.9s ease;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     @keyframes gradientBG {
@@ -57,89 +37,401 @@
       }
     }
 
+    /* Header */
+    header {
+      width: 100%;
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
 
-    .glow-container {
-      box-shadow:
+    @media (min-width: 640px) {
+      header {
+        flex-direction: row;
+      }
+    }
+
+    header.scrolled {
+      background: #27194b;
+      transition: background 0.9s ease, border-bottom 0.9s ease;
+    }
+
+    h1 {
+      font-weight: 800;
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+      margin-bottom: 1rem;
+      user-select: none;
+      text-shadow:
         0 0 10px #4019b3,
         0 0 20px #7f5af0,
         0 0 30px #2b117b,
         0 0 40px #7f5af0;
+      color: white;
     }
 
-    .header-link:hover {
+    @media (min-width: 640px) {
+      h1 {
+        font-size: 2.25rem;
+        margin-bottom: 0;
+      }
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #8b949e;
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease, text-shadow 0.2s ease;
+    }
+
+    nav a:hover {
       color: #7f5af0;
       text-shadow:
         0 0 5px #7f5af0,
         0 0 10px #7f5af0;
     }
+
+    /* Layout */
+    .container {
+      flex: 1;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    aside.sidebar {
+      width: 16rem;
+      background-color: #5a2a8a;
+      color: white;
+      padding: 1.5rem;
+      border-top-right-radius: 1.5rem;
+      border-bottom-right-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    #shrinkBtn {
+      position: absolute;
+      top: 1rem;
+      right: -1.5rem;
+      background: #5c469c;
+      border: none;
+      border-radius: .25rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform .3s ease, background .3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    #shrinkBtn i {
+      transition: transform .3s ease;
+      color: #d4adfc;
+    }
+
+    /* collapsed state */
+    body.sidebar-shrink aside.sidebar {
+      width: 4rem;
+    }
+
+    body.sidebar-shrink aside.sidebar nav a span,
+    body.sidebar-shrink aside.sidebar button#logoutBtn span {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    body.sidebar-shrink #shrinkBtn i {
+      transform: rotate(180deg);
+    }
+
+    /* hover feedback */
+    #shrinkBtn:hover {
+      background: #d4adfc;
+    }
+
+    aside.sidebar .icon-container {
+      background-color: #5a2a8a;
+      padding: 1rem 0;
+      border-radius: 0.5rem;
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 2rem;
+      width: 100%;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    aside.sidebar .icon-container i {
+      font-size: 2rem;
+    }
+
+    aside.sidebar nav {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    aside.sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      transition: color 0.2s ease, opacity 0.2s ease;
+      opacity: 0.75;
+    }
+
+    aside.sidebar nav a:hover {
+      color: #c7b2f4;
+      opacity: 1;
+    }
+
+    aside.sidebar nav a.active {
+      opacity: 1;
+      color: #c7b2f4;
+    }
+
+    aside.sidebar button#logoutBtn {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.75);
+      background: none;
+      border: none;
+      cursor: pointer;
+      opacity: 0.75;
+      transition: color 0.2s ease, opacity 0.2s ease;
+      padding: 0;
+      font-size: 1rem;
+    }
+
+    aside.sidebar button#logoutBtn:hover {
+      color: #c7b2f4;
+      opacity: 1;
+    }
+
+    /* Main content */
+    main.content {
+      flex: 1;
+      padding: 2rem;
+      max-width: 56rem;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    main.content h2 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+
+    main.content p#greeting {
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    ul.course-list {
+      list-style-type: disc;
+      list-style-position: inside;
+      margin: 0;
+      padding: 1.5rem;
+      background-color: white;
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+      color: black;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    ul.course-list > li {
+      margin-bottom: 1rem;
+    }
+
+    ul.course-list > li > u > b > a {
+      color: #0c134f;
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    ul.course-list ul {
+      list-style-type: disc;
+      list-style-position: inside;
+      margin-top: 0.5rem;
+      margin-left: 1rem;
+      color: #4a5568; /* gray-700 */
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    section.resources {
+      background-color: white;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+      color: black;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    section.resources a {
+      color: #0c134f;
+      font-weight: 700;
+      font-size: 1.25rem;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    section.resources ul {
+      list-style-type: disc;
+      list-style-position: inside;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: black;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    section.resources ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #161b22;
+      border-top: 1px solid #30363d;
+      margin-top: auto;
+      padding: 2rem 1.5rem;
+      width: 100%;
+      color: #8b949e;
+      font-size: 0.875rem;
+    }
+
+    footer .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 640px) {
+      footer .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    footer h3 {
+      color: white;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: #8b949e;
+    }
+
+    footer ul li {
+      margin-bottom: 0.25rem;
+    }
+
+    footer ul li a {
+      color: #8b949e;
+      text-decoration: none;
+    }
+
+    footer ul li a:hover {
+      text-decoration: underline;
+    }
+
+    footer .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    footer .social-links a {
+      color: #8b949e;
+      font-size: 1.25rem;
+      transition: color 0.2s ease;
+    }
+
+    footer .social-links a:hover {
+      color: #7f5af0;
+    }
   </style>
 </head>
 
-<body class="bg-[#0d1117] text-white min-h-screen flex flex-col">
-  <header
-    class="w-full py-6 flex flex-col sm:flex-row items-center justify-between px-5  border-[] sticky left-0 top-0 z-10  backdrop-blur-sm">
-    <h1 class="text-3xl sm:text-4xl font-extrabold glow-text select-none mb-4 sm:mb-0">CYROTICAL UNIVERSITY</h1>
-    <nav class="flex space-x-6 text-sm font-semibold text-[#8b949e]">
-      <a class="header-link transition duration-200" href="Home.html">Home</a>
-      <a class="header-link transition duration-200" href="box_about.html">About</a>
-      <a class="header-link transition duration-200" href="admission.html">Admissions</a>
-      <a class="header-link transition duration-200" href="academics.html">Academics</a>
-      <a class="header-link transition duration-200" href="contact.html">Contact</a>
-      <!-- <a class="header-link transition duration-200" href="box_about.html">More</a> -->
+  <body class="sidebar-shrink">
+  <header>
+    <h1>CYROTICAL UNIVERSITY</h1>
+    <nav>
+      <a href="Home.html">Home</a>
+      <a href="box_about.html">About</a>
+      <a href="admission.html">Admissions</a>
+      <a href="academics.html">Academics</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <div class="min-h-screen flex">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-purple-800 text-white p-6 rounded-tr-2xl rounded-br-2xl flex flex-col">
-      <div class="flex items-center justify-center mb-8">
-        <div class="bg-purple-800 p-4 rounded-lg">
-          <i class="fas fa-graduation-cap fa-2x"></i>
-        </div>
+  <div class="container">
+    <aside class="sidebar">
+      <button id="shrinkBtn" title="Toggle Sidebar" aria-label="Toggle Sidebar">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="icon-container">
+        <i class="fas fa-graduation-cap"></i>
       </div>
-      <nav class="flex-1 space-y-4">
-        <a href="dashboard_updated.html" class="flex items-center space-x-3 text-lg font-semibold hover:text-purple-200">
-          <i class="fas fa-home"></i><span>Dashboard</span>
-        </a>
-        <a href="payment_info_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100">
-          <i class="fas fa-credit-card"></i><span>Payment Info</span>
-        </a>
-        <a href="courses_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100">
-          <i class="fas fa-book-open"></i><span>Courses</span>
-        </a>
-        <a href="drop_semester_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100">
-          <i class="fas fa-times-circle"></i><span>Drop Semester</span>
-        </a>
-        <a href="result_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100">
-          <i class="fas fa-chart-bar"></i><span>Result</span>
-        </a>
-        <a href="notice_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100">
-          <i class="fas fa-bell"></i><span>Notice</span>
-        </a>
-        <a href="schedule_updated.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100">
-          <i class="fas fa-calendar-alt"></i><span>Schedule</span>
-        
-        </a>
-        <a href="library.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100 hover:text-[#d4adfc]">
-          <i class="fas fa-book"></i><span>Library</span>
-        </a>
-        <a href="attendance.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100"><i
-          class="fas fa-check-circle"></i><span>Attendance</span></a>
-        <a href="canteen.html" class="flex items-center space-x-3 opacity-75 hover:opacity-100"><i class="fas fa-utensils"></i><span>Canteen</span></a>
+      <nav>
+        <a href="dashboard_updated.html"><i class="fas fa-home"></i><span>Dashboard</span></a>
+        <a href="payment_info_updated.html"><i class="fas fa-credit-card"></i><span>Payment Info</span></a>
+        <a href="courses_updated.html" class="active"><i class="fas fa-book-open"></i><span>Courses</span></a>
+        <a href="drop_semester_updated.html"><i class="fas fa-times-circle"></i><span>Drop Semester</span></a>
+        <a href="result_updated.html"><i class="fas fa-chart-bar"></i><span>Result</span></a>
+        <a href="notice_updated.html"><i class="fas fa-bell"></i><span>Notice</span></a>
+        <a href="schedule_updated.html"><i class="fas fa-calendar-alt"></i><span>Schedule</span></a>
+        <a href="library.html"><i class="fas fa-book"></i><span>Library</span></a>
+        <a href="attendance.html"><i class="fas fa-check-circle"></i><span>Attendance</span></a>
+        <a href="canteen.html"><i class="fas fa-utensils"></i><span>Canteen</span></a>
       </nav>
-      <button id="logoutBtn" class="mt-8 flex items-center space-x-3 opacity-75 hover:opacity-100 self-start">
+      <button id="logoutBtn">
         <i class="fas fa-sign-out-alt"></i><span>Logout</span>
       </button>
     </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 p-8 max-w-4xl mx-auto w-full">
-      <h2 class="text-3xl font-bold mb-6">Courses</h2>
-      <p class="mb-4" id="greeting">Hello, Cyrus! Here are your enrolled courses for this semester.</p>
-      <ul class="list-disc list-inside space-y-2 bg-white rounded-xl p-6 shadow text-black w-full">
+    <main class="content">
+      <h2>Courses</h2>
+      <p id="greeting">Hello, Cyrus! Here are your enrolled courses for this semester.</p>
+      <ul class="course-list">
         <li>
-          <u><b><a style="color:#0c134f", href="https://mrcet.com/downloads/digital_notes/HS/OOP_10122018.pdf">Object Oriented Programming</a></b></u>
-          <ul class="list-disc list-inside space-y-1 mt-2 text-sm text-gray-700">
+          <u><b><a href="https://mrcet.com/downloads/digital_notes/HS/OOP_10122018.pdf" style="color:#0c134f;">Object Oriented Programming</a></b></u>
+          <ul>
             <li>Introduction to OOP concepts</li>
             <li>Classes and Objects</li>
             <li>Inheritance and Polymorphism</li>
@@ -148,8 +440,8 @@
           </ul>
         </li>
         <li>
-          <u><b><a href="https://www.auhd.edu.ye/upfiles/elibrary/Azal2020-01-22-12-28-11-76901.pdf" style="color: #0c134f;">Fundamentals of Database Systems</a></b></u>
-          <ul class="list-disc list-inside space-y-1 mt-2 text-sm text-gray-700">
+          <u><b><a href="https://www.auhd.edu.ye/upfiles/elibrary/Azal2020-01-22-12-28-11-76901.pdf" style="color:#0c134f;">Fundamentals of Database Systems</a></b></u>
+          <ul>
             <li>Database design and ER modeling</li>
             <li>SQL queries and optimization</li>
             <li>Normalization and indexing</li>
@@ -158,8 +450,8 @@
           </ul>
         </li>
         <li>
-          <u><b><a href="https://www.mta.ca/~rrosebru/oldcourse/263114/Dsa.pdf" style="color: #0c134f;">Data Structures and Algorithms</a></b></u>
-          <ul class="list-disc list-inside space-y-1 mt-2 text-sm text-gray-700">
+          <u><b><a href="https://www.mta.ca/~rrosebru/oldcourse/263114/Dsa.pdf" style="color:#0c134f;">Data Structures and Algorithms</a></b></u>
+          <ul>
             <li>Arrays, Linked Lists, Stacks, Queues</li>
             <li>Trees and Graphs</li>
             <li>Sorting and Searching algorithms</li>
@@ -168,8 +460,8 @@
           </ul>
         </li>
         <li>
-          <u><b><a href="https://www.cl.cam.ac.uk/teaching/1011/OpSystems/os1a-slides.pdf" style="color: #0c134f;">Operating Systems</a></b></u>
-          <ul class="list-disc list-inside space-y-1 mt-2 text-sm text-gray-700">
+          <u><b><a href="https://www.cl.cam.ac.uk/teaching/1011/OpSystems/os1a-slides.pdf" style="color:#0c134f;">Operating Systems</a></b></u>
+          <ul>
             <li>Process management and scheduling</li>
             <li>Memory management</li>
             <li>File systems and I/O</li>
@@ -178,8 +470,8 @@
           </ul>
         </li>
         <li>
-          <u><b><a href="https://mrcet.com/downloads/digital_notes/CSE/III%20Year/COMPUTER%20NETWORKS%20NOTES.pdf" style="color: #0c134f;">Computers Networks</a></b></u>
-          <ul class="list-disc list-inside space-y-1 mt-2 text-sm text-gray-700">
+          <u><b><a href="https://mrcet.com/downloads/digital_notes/CSE/III%20Year/COMPUTER%20NETWORKS%20NOTES.pdf" style="color:#0c134f;">Computers Networks</a></b></u>
+          <ul>
             <li>Network models and protocols</li>
             <li>IP addressing and subnetting</li>
             <li>Routing and switching</li>
@@ -188,9 +480,9 @@
           </ul>
         </li>
       </ul>
-      <section class="mt-8 bg-white rounded-xl p-6 shadow text-black w-full">
-        <a href="https://www.ed.gov/sites/ed/files/parents/academic/involve/schoolbox/brochure.pdf" style="color: #0c134f", class="text-xl font-bold mb-4">Additional Academic Resources</a>
-        <ul class="list-disc list-inside space-y-2">
+      <section class="resources">
+        <a href="https://www.ed.gov/sites/ed/files/parents/academic/involve/schoolbox/brochure.pdf">Additional Academic Resources</a>
+        <ul>
           <li>Access to online libraries and journals</li>
           <li>Workshops and seminars on emerging technologies</li>
           <li>Peer study groups and tutoring sessions</li>
@@ -198,9 +490,9 @@
           <li>Career counseling and placement support</li>
         </ul>
       </section>
-      <section style="color: #0c134f", class="mt-8 bg-white rounded-xl p-6 shadow text-black w-full">
-        <a href="https://www.wcupa.edu/distanceed/documents/BestPracticesContentModules.pdf" class="text-xl font-bold mb-4">Recommended Modules</a>
-        <ul class="list-disc list-inside space-y-2">
+      <section class="resources" style="color: #0c134f;">
+        <a href="https://www.wcupa.edu/distanceed/documents/BestPracticesContentModules.pdf">Recommended Modules</a>
+        <ul>
           <li>Artificial Intelligence and Machine Learning</li>
           <li>Cloud Computing and Virtualization</li>
           <li>Cybersecurity Fundamentals</li>
@@ -210,14 +502,14 @@
       </section>
 
       <script>
-      const header = document.querySelector('header');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 8) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      });
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 8) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        });
 
         // Update greeting dynamically based on logged-in user
         document.addEventListener('DOMContentLoaded', () => {
@@ -226,44 +518,52 @@
           if (greeting) {
             greeting.textContent = `Hello, ${loggedInUser}! Here are your enrolled courses for this semester.`;
           }
+
+          // Sidebar collapse/expand toggle button functionality
+          const shrinkBtn = document.getElementById('shrinkBtn');
+          if (shrinkBtn) {
+            shrinkBtn.addEventListener('click', () => {
+              document.body.classList.toggle('sidebar-shrink');
+              // Toggle span visibility if exists
+              const iconText = document.querySelector('aside.sidebar .icon-container span');
+              if (iconText) {
+                iconText.classList.toggle('forHideClass');
+              }
+            });
+          }
         });
       </script>
     </main>
   </div>
 
-  <footer
-    class="bg-[#161b22] border-t border-[#30363d] mt-12 py-8 w-full px-6 text-[#8b949e] text-sm">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+  <footer>
+    <div class="footer-grid">
       <div>
-        <h3 class="text-white font-semibold mb-3">Contact Us</h3>
+        <h3>Contact Us</h3>
         <p>College Address: 123 College St, City, State, ZIP</p>
         <p>Phone: (123) 456-7890</p>
         <p>Email: info@yourcollege.edu</p>
       </div>
       <div>
-        <h3 class="text-white font-semibold mb-3">Quick Links</h3>
-        <ul class="space-y-1">
-          <li><a class="hover:underline" href="#">Terms and Conditions</a></li>
-          <li><a class="hover:underline" href="#">Privacy Policy</a></li>
-          <li><a class="hover:underline" href="#">Academic Calendar</a></li>
-          <li><a class="hover:underline" href="#">Student Handbook</a></li>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="box_T&C.html">Terms and Conditions</a></li>
+          <li><a href="box_PP.html">Privacy Policy</a></li>
+          <li><a href="box_AC.html">Academic Calendar</a></li>
+          <!-- <li><a href="">Student Handbook</a></li> -->
         </ul>
       </div>
       <div>
-        <h3 class="text-white font-semibold mb-3">Follow Us</h3>
-        <ul class="flex space-x-4">
-          <li><a aria-label="Facebook" class="hover:text-[#7f5af0]" href="#"><i class="fab fa-facebook fa-lg"></i></a>
-          </li>
-          <li><a aria-label="Twitter" class="hover:text-[#7f5af0]" href="#"><i class="fab fa-twitter fa-lg"></i></a>
-          </li>
-          <li><a aria-label="Instagram" class="hover:text-[#7f5af0]" href="#"><i class="fab fa-instagram fa-lg"></i></a>
-          </li>
-          <li><a aria-label="LinkedIn" class="hover:text-[#7f5af0]" href="#"><i class="fab fa-linkedin fa-lg"></i></a>
-          </li>
+        <h3>Follow Us</h3>
+        <ul class="social-links">
+          <li><a aria-label="Facebook" href="#"><i class="fab fa-facebook fa-lg"></i></a></li>
+          <li><a aria-label="Twitter" href="#"><i class="fab fa-twitter fa-lg"></i></a></li>
+          <li><a aria-label="Instagram" href="#"><i class="fab fa-instagram fa-lg"></i></a></li>
+          <li><a aria-label="LinkedIn" href="#"><i class="fab fa-linkedin fa-lg"></i></a></li>
         </ul>
       </div>
     </div>
-    <p class="text-center text-xs text-[#484f58] mt-8">&copy; 2024 Your College Name. All rights reserved.</p>
+    <p style="text-align:center; font-size:0.75rem; color:#484f58; margin-top:2rem;">&copy; 2024 Your College Name. All rights reserved.</p>
   </footer>
 
   <script>
