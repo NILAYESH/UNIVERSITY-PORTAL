@@ -16,10 +16,12 @@
       --color3: #5c469c;
       --color4: #d4adfc;
     }
-    *{
+
+    * {
       margin: 0;
       padding: 0;
     }
+
     body {
       font-family: 'Nunito', sans-serif;
       margin: 0;
@@ -201,10 +203,13 @@
   <style>
     /* Responsive adjustments for small devices */
     @media (max-width: 480px) {
+
       /* Reduce max-width of login and register containers */
-      #loginContainer, #registerContainer {
+      #loginContainer,
+      #registerContainer {
         max-width: 90vw;
         padding: 1rem;
+        width: 95% !important;
       }
 
       /* Allow nav to scroll horizontally without breaking alignment */
@@ -213,6 +218,7 @@
         -webkit-overflow-scrolling: touch;
         white-space: nowrap;
       }
+
       nav a {
         display: inline-block;
       }
@@ -616,183 +622,7 @@
         if (!idx) {
           idx = Math.floor(Math.random() * 9) + 1;
           localStorage.setItem(`profileImgIdx_${userId}`, idx);
-        }```javascript
-// Improved JavaScript code
-
-// User store
-let users = JSON.parse(localStorage.getItem('users')) || {};
-
-// Create a container for in-webpage popups
-const popupContainer = document.createElement('div');
-popupContainer.id = 'popupContainer';
-popupContainer.style.position = 'fixed';
-popupContainer.style.top = '80px';
-popupContainer.style.left = '50%';
-popupContainer.style.transform = 'translateX(-50%)';
-popupContainer.style.zIndex = '1000';
-popupContainer.style.minWidth = '300px';
-popupContainer.style.padding = '1rem 2rem';
-popupContainer.style.borderRadius = '0.5rem';
-popupContainer.style.textAlign = 'center';
-popupContainer.style.fontWeight = '600';
-popupContainer.style.color = '#fff';
-popupContainer.style.background = 'rgba(127, 90, 240, 0.9)';
-popupContainer.style.boxShadow = '0 0 10px #7f5af0';
-popupContainer.style.display = 'none';
-document.body.appendChild(popupContainer);
-
-function showPopup(message, duration = 3000) {
-  popupContainer.textContent = message;
-  popupContainer.style.display = 'block';
-  setTimeout(() => {
-    popupContainer.style.display = 'none';
-  }, duration);
-}
-
-// Show after login popup
-function showAfterLoginPopup() {
-  showPopup('Login successful! Welcome back.', 4000);
-}
-
-// Call after login popup on successful login
-document.getElementById('loginForm').addEventListener('submit', function (e) {
-  e.preventDefault();
-  const id = document.getElementById('loginId').value.trim();
-  const pwd = document.getElementById('loginPwd').value;
-  if (users[id] && users[id] === pwd) {
-    localStorage.setItem('studentName', id);
-    // Set session flag for showing popup on dashboard
-    sessionStorage.setItem('justLoggedIn', 'true');
-    window.location.href = 'dashboard_updated.html';
-  } else {
-    const popup = document.getElementById('popupContainer');
-    popup.style.top = '40px';
-    showPopup('Invalid Student ID or Password');
-  }
-});
-
-document.getElementById('registerForm').addEventListener('submit', function (e) {
-  e.preventDefault();
-  const id = document.getElementById('regId').value.trim();
-  const pwd = document.getElementById('regPwd').value;
-  if (!id || !pwd) {
-    // Removed popup for empty fields as per request
-    // Also prevent form submission silently
-    return false;
-  }
-  if (users[id]) {
-    showPopup('Student ID already exists');
-    return;
-  }
-  users[id] = pwd;
-  localStorage.setItem('users', JSON.stringify(users));
-  showPopup('Registration successful! You can now login.');
-  document.getElementById('regId').value = '';
-  document.getElementById('regPwd').value = '';
-  document.getElementById('toggleLogin').click();
-});
-
-// Logout
-document.getElementById('logoutBtn')?.addEventListener('click', () => {
-  // Clear user session data
-  localStorage.removeItem('studentName');
-  localStorage.removeItem('studentId');
-  localStorage.removeItem('password');
-
-  // Clear UI fields
-  document.getElementById('loginId').value = '';
-  document.getElementById('loginPwd').value = '';
-  const userNameSpan = document.getElementById('userName');
-  const dashboardNameSpan = document.getElementById('dashboardName');
-  if (userNameSpan) userNameSpan.textContent = '';
-  if (dashboardNameSpan) dashboardNameSpan.textContent = '';
-
-  // Toggle UI visibility
-  document.getElementById('dashboardContainer').classList.add('hidden');
-  document.getElementById('loginContainer').classList.remove('hidden');
-});
-
-// Consolidated JavaScript
-document.addEventListener('DOMContentLoaded', () => {
-  const loginForm = document.getElementById('loginForm');
-  const registerForm = document.getElementById('registerForm');
-  const loginContainer = document.getElementById('loginContainer');
-  const registerContainer = document.getElementById('registerContainer');
-  const dashboardContainer = document.getElementById('dashboardContainer');
-  const toggleRegister = document.getElementById('toggleRegister');
-  const toggleLogin = document.getElementById('toggleLogin');
-  const logoutBtn = document.getElementById('logoutBtn');
-  const userName = document.getElementById('userName');
-  const dashboardName = document.getElementById('dashboardName');
-  const currentDate = document.getElementById("currentDate");
-
-  // Toggle between login and register
-  toggleRegister.addEventListener('click', (e) => {
-    e.preventDefault();
-    loginContainer.classList.add('hidden');
-    registerContainer.classList.remove('hidden');
-  });
-
-  toggleLogin.addEventListener('click', (e) => {
-    e.preventDefault();
-    registerContainer.classList.add('hidden');
-    loginContainer.classList.remove('hidden');
-  });
-
-  // Login logic
-  loginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const id = document.getElementById('loginId').value.trim();
-    const pwd = document.getElementById('loginPwd').value;
-    if (users[id] && users[id] === pwd) {
-      // Save logged in user
-      localStorage.setItem('studentName', id);
-
-      // Redirect to dashboard_updated.html after successful login
-      window.location.href = 'dashboard_updated.html';
-    } else {
-      // alert('Invalid Student ID or Password');
-    }
-  });
-
-  // Register logic
-  registerForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const regId = document.getElementById('regId').value.trim();
-    const regPwd = document.getElementById('regPwd').value;
-    if (regId && regPwd) {
-      // alert('Registered successfully! Now log in.');
-      registerContainer.classList.add('hidden');
-      loginContainer.classList.remove('hidden');
-      document.getElementById('loginId').value = regId;
-    } else {
-      // alert('Please fill all fields.');
-    }
-  });
-
-  // Logout logic
-  logoutBtn?.addEventListener('click', () => {
-    dashboardContainer.classList.add('hidden');
-    loginContainer.classList.remove('hidden');
-    document.getElementById('loginId').value = '';
-    document.getElementById('loginPwd').value = '';
-  });
-
-  // Set dynamic date
-  // currentDate.textContent = new Date().toDateString();
-
-  // Randomize profile images
-  document.querySelectorAll('.profile-img').forEach(img => {
-    const userId = localStorage.getItem('studentName') || '';
-    let idx = localStorage.getItem(`profileImgIdx_${userId}`);
-    if (!idx) {
-      idx = Math.floor(Math.random() * 9) + 1;
-      localStorage.setItem(`profileImgIdx_${userId}`, idx);
-    }
-    img.src = `profile${idx}.png`;
-  });
-});
-```
+        } 
         img.src = `profile${idx}.png`;
       });
     });

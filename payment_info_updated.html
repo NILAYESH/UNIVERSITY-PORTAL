@@ -49,6 +49,122 @@
       }
     }
 
+    @media (max-width: 480px) {
+      html{
+        overflow-x: hidden !important;
+      }
+      header {
+        flex-direction: column;
+      }
+
+      .header-link {
+        margin: 0 !important;
+      }
+      header h1 {
+        font-size: 1.4rem !important;
+      }
+      nav {
+        flex-wrap: wrap;
+        gap: 0.4rem !important;
+      }
+      #search-container {
+        width: 45% !important;
+        height: 2.5rem !important;;
+        display: flex !important; ;
+        flex-direction: column !important; ;
+        justify-content: center !important; ;
+      }
+      #main-content {
+        padding: 1rem !important;
+        gap: 1rem !important;
+      }
+
+      #navBar{
+        display: flex !important;
+        gap: 1rem !important;
+      }
+      /* New styles for 480px clone UI */
+      #container {
+        flex-direction: column !important;
+      }
+      #sidebar {
+        width: 100% !important;
+        height: auto !important;
+        border-radius: 0 !important;
+        padding: .5rem !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-around !important;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+      }
+      #sidebar-icon {
+        margin-bottom: 0 !important;
+        justify-content: center !important;
+        width: auto !important;
+        gap: 0.5rem !important;
+      }
+      #sidebar-nav {
+        flex-direction: row !important;
+        /* gap: 0.5rem !important; */
+        width: auto !important;
+        justify-content: space-around !important;
+      }
+      .sidebar-link {
+        font-size: 0.875rem !important;
+        /* padding: 0.25rem 0.5rem !important; */
+        height: 2rem !important;
+        width: 1.5rem !important;
+      }
+      #sidebar button.sidebar-logout {
+        margin-top: 0 !important;
+        align-self: center !important;
+        font-size: 0.875rem !important;
+        /* padding: 0.25rem 0.5rem !important; */
+        height: 2rem !important;
+        width: 1.5rem !important;
+      }
+
+      #shrinkBtn{
+        display: none !important;
+      }
+      #sidebar-icon{
+        display: none !important;
+      }
+      #main-content {
+        padding: .5rem !important;
+        width: 100% !important;
+      }
+
+      #courses-instructors-section {
+        flex-direction: column !important;
+      }
+
+      #stats-section {
+        margin-bottom: 0;
+        gap: .5rem !important;
+      }
+
+      #instructors-notice {
+        width: 100% !important;
+        gap: 0.5rem !important;
+      }
+
+      #main-content{
+        padding: 1rem !important;
+      }
+
+      #courses-instructors-section{
+        display: flex !important;
+        flex-direction: column !important;
+      }
+    }
+
+    header.scrolled {
+      background: var(--color1);
+      border-bottom: 1px solid #30363d;
+    }
+
     .glow-container {
       box-shadow:
         0 0 10px #5c469c,
@@ -203,7 +319,7 @@
 <body class="bg-[#0c134f] text-white min-h-screen flex flex-col sidebar-shrink">
   <header class="w-full py-6 flex flex-col sm:flex-row items-center justify-between px-4 border-b border-[#5c469c]">
     <h1 class="text-3xl sm:text-4xl font-extrabold glow-text select-none mb-4 sm:mb-0">CYROTICAL UNIVERSITY</h1>
-    <nav class="flex space-x-6 text-sm font-semibold text-[#8b949e]">
+    <nav id="navBar" class="flex space-x-6 text-sm font-semibold text-[#8b949e]">
       <a class="header-link transition duration-200" href="Home.html">Home</a>
       <a class="header-link transition duration-200" href="box_about.html">About</a>
       <a class="header-link transition duration-200" href="admission.html">Admissions</a>
@@ -239,10 +355,10 @@
       </button>
     </aside>
 
-    <main class="flex-1 p-8">
+    <main class="flex-1 p-8" id="main-content">
       <h2 class="text-3xl font-bold mb-6">Payment Information</h2>
       <p class="mb-4">Hello, <span id="userName">Cyrus</span>! Here is your payment summary for the current semester.</p>
-      <div class="grid grid-cols-2 gap-6 max-w-full">
+      <div class="grid grid-cols-2 gap-6 max-w-full" id="courses-instructors-section">
         <div class="bg-white rounded-xl p-4 shadow text-black flex flex-col">
           <h3 class="text-lg font-semibold mb-2 flex items-center space-x-2">
             <span>Semester 1</span>
