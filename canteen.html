@@ -125,6 +125,30 @@
     .sidebar-link:hover,
     .sidebar-link.active {
       color: #cbb3ff;
+      /* Add glowing effect */
+      animation: glow 1.5s ease-in-out infinite alternate;
+      text-shadow:
+        0 0 5px #cbb3ff,
+        0 0 10px #cbb3ff,
+        0 0 20px #cbb3ff,
+        0 0 40px #cbb3ff;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow:
+          0 0 5px #cbb3ff,
+          0 0 10px #cbb3ff,
+          0 0 20px #cbb3ff,
+          0 0 40px #cbb3ff;
+      }
+      to {
+        text-shadow:
+          0 0 10px #d4adfc,
+          0 0 20px #d4adfc,
+          0 0 30px #d4adfc,
+          0 0 50px #d4adfc;
+      }
     }
 
     #sidebar button.sidebar-logout {
@@ -271,7 +295,7 @@
       <nav id="sidebar-nav">
         <a href="dashboard_updated.html" class="sidebar-link"><i class="fas fa-home"></i><span>Dashboard</span></a>
         <a href="payment_info_updated.html" class="sidebar-link"><i class="fas fa-credit-card"></i><span>Payment Info</span></a>
-        <a href="registration_updated.html" class="sidebar-link"><i class="fas fa-user-plus"></i><span>Registration</span></a>
+        <!-- <a href="registration_updated.html" class="sidebar-link"><i class="fas fa-user-plus"></i><span>Registration</span></a> -->
         <a href="courses_updated.html" class="sidebar-link"><i class="fas fa-book-open"></i><span>Courses</span></a>
         <a href="drop_semester_updated.html" class="sidebar-link"><i class="fas fa-times-circle"></i><span>Drop Semester</span></a>
         <a href="result_updated.html" class="sidebar-link"><i class="fas fa-chart-bar"></i><span>Result</span></a>

@@ -131,11 +131,11 @@
         <i class="fas fa-sign-out-alt"></i><span>Logout</span>
       </button>
     </aside> -->
-
+    
     <!-- Main Content -->
     <main class="flex-1 p-8 max-w-4xl mx-auto w-full">
       <h2 class="text-3xl font-bold mb-6">Courses</h2>
-      <p class="mb-4" id="greeting">Hello, Cyrus! Here are your enrolled courses for this semester.</p>
+      <p class="mb-4" id="greeting">Hello, Student! Here are your enrolled courses for this semester.</p>
       <ul class="list-disc list-inside space-y-2 bg-white rounded-xl p-6 shadow text-black w-full">
         <li>
           <u><b><a style="color:#0c134f", href="https://mrcet.com/downloads/digital_notes/HS/OOP_10122018.pdf">Object Oriented Programming</a></b></u>
@@ -220,13 +220,13 @@
       });
 
         // Update greeting dynamically based on logged-in user
-        document.addEventListener('DOMContentLoaded', () => {
-          const loggedInUser = localStorage.getItem('studentName') || 'Student';
-          const greeting = document.getElementById('greeting');
-          if (greeting) {
-            greeting.textContent = `Hello, ${loggedInUser}! Here are your enrolled courses for this semester.`;
-          }
-        });
+        // document.addEventListener('DOMContentLoaded', () => {
+        //   const loggedInUser = localStorage.getItem('studentName') || 'Student';
+        //   const greeting = document.getElementById('greeting');
+        //   if (greeting) {
+        //     greeting.textContent = `Hello, ${loggedInUser}! Here are your enrolled courses for this semester.`;
+        //   }
+        // });
       </script>
     </main>
   </div>
